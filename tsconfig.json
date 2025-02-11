@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "CommonJS",
+    "esModuleInterop": true,
+    "experimentalDecorators": true,  // Debe estar habilitado para usar decoradores
+    "emitDecoratorMetadata": true,   // Necesario para la metadata de los decoradores de TypeORM
+    "strict": true,
+    "outDir": "./dist",
+    "rootDir": "./src"
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}
