@@ -32,9 +32,9 @@ export const registrarUsuario = async (req: Request, res: Response): Promise<voi
 // Debe recibir las credenciales del usuario y devolver un token JWT
 //  la autenticación es exitosa.
 export const loginUsuarios = async (req: Request, res: Response): Promise<void> => {
-    try {
-      // Desestructuramos el cuerpo de la solicitud (que se espera que sea un objeto conforme a SignInAuthDto)
-      const { email, password }: { email: string, password: string } = req.body;
+  // Desestructuramos el cuerpo de la solicitud (que se espera que sea un objeto conforme a SignInAuthDto)
+  const { email, password }: { email: string, password: string } = req.body;
+  console.log("Email:", email, "Password:", password);    try {
       
       if (!email || !password) {
         res.status(400).send("Email y password son requeridos.");

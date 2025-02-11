@@ -3,12 +3,18 @@
     "target": "ES6",
     "module": "CommonJS",
     "esModuleInterop": true,
-    "experimentalDecorators": true,  // Debe estar habilitado para usar decoradores
-    "emitDecoratorMetadata": true,   // Necesario para la metadata de los decoradores de TypeORM
+    "experimentalDecorators": true, 
+    "emitDecoratorMetadata": true,
     "strict": false,
     "outDir": "./dist",
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "typeRoots" : ["./src/types", "./node_modules/@types"]
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "src/**/*.ts",
+    "src/types/**/*.d.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
