@@ -1,8 +1,8 @@
 import { AppDataSource } from "../config/data-source";
-import UsuarioDto, { UsuarioRespuestaDto } from "../dtos/usuarioDto";
+import UsuarioDto, { UsuarioAuthRespuestaDto, UsuarioRespuestaDto } from "../dtos/usuarioDto";
 import { CredencialEntity } from "../entities/credencialEntity";
 import { UsuarioEntity } from "../entities/usuarioEntity";
-import { crearUsuarioCredenciales, CredentialModel } from "./credencialesService";
+import { checkUsuarioCreds, crearUsuarioCredenciales, CredentialModel } from "./credencialesService";
 import * as jwt from 'jsonwebtoken';
 
 
@@ -71,10 +71,10 @@ export const crearUsuarioService = async (usuarioData: UsuarioDto): Promise<Usua
     }
 };
 
-export const loginUsersService = async (username: string, password: string):Promise<UserAuthResponseDto | null>=>{
+export const loginUsuarioService = async (nombreDeUsuario: string, password: string):Promise<UsuarioAuthRespuestaDto | null>=>{
     //validar las credenciales
     //encontrar al user
     //empaquetar la respuesta
-    return await checkUserCredentials(username, password);
+    return await checkUsuarioCreds(nombreDeUsuario, password);
 
 }

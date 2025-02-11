@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { UsuarioRespuestaDto } from "../dtos/usuarioDto";
-import { crearUsuarioService } from "../services/usuarioService";
+import { UsuarioAuthRespuestaDto, UsuarioRespuestaDto } from "../dtos/usuarioDto";
+import { crearUsuarioService, loginUsuarioService } from "../services/usuarioService";
 
 
 // Usuarios
@@ -28,4 +28,24 @@ export const registrarUsuario = async (req: Request, res: Response): Promise<voi
 };
 
 
-// Endpoint para iniciar sesión: Debe recibir las credenciales del usuario y devolver un token JWT si la autenticación es exitosa.
+// Endpoint para iniciar sesión:
+// Debe recibir las credenciales del usuario y devolver un token JWT
+//  la autenticación es exitosa.
+export const loginUsuarios = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { nombreDeUsuario, password } = req.body;
+        if (!nombreDeUsuario || !password) {
+            res.status(400).send("Faltan campos obligatorios");
+            return;
+        }
+        const usuarioVerificado: UsuarioAuthRespuestaDto | null = await loginUsuarioService(nombreDeUsuario, password);
+        if (usuarioVerificado) {
+            res.status(400).send(usuarioVerificado);
+            return;
+        } res.status(400).send("Login falló");
+        return;
+    } catch (error) {
+        console.error("Error creando usuario: ", error);
+        res.status(500).send("Error interno de server")
+    }
+}

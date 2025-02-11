@@ -15,9 +15,9 @@ export const crearUsuarioCredenciales = async (apellido: string, password: strin
 };
 
 
-export const checkUserCredentials = async (apellido: string, password: string): Promise<UsuarioAuthRespuestaDto | null> => {
+export const checkUsuarioCreds = async (nombreDeUsuario: string, password: string): Promise<UsuarioAuthRespuestaDto | null> => {
     const usuarioCredEncontradas: CredencialEntity | null = await CredentialModel.findOne({
-        where: { apellido },
+        where: { nombreDeUsuario },
         relations: { usuario: true }
     })
     console.log(usuarioCredEncontradas);
