@@ -13,16 +13,24 @@ const options = {
     },
     servers: [
       {
-        url: "http://localhost:3000/api/v1", 
+        url: "http://localhost:3000/api/v1", // Asegúrate de que el puerto y la URL sean correctos
       },
     ],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT", // Esto es solo para documentación, pero indica que estamos usando JWT
+        },
+      },
+    },
   },
-  apis: ["./src/routes/**/*.ts"],
+  apis: ["./src/routes/**/*.ts"], // Aquí se encuentran las rutas que Swagger escaneará para documentar
 };
 
 const specs = swaggerJsdoc(options);
 
 export default (app: Application) => {
-  
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 };

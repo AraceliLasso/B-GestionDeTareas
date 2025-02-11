@@ -6,20 +6,13 @@ const tareaRouter = Router();
 
 /**
  * @swagger
- * tags:
- *   name: Tarea
- *   description: Endpoints para gestionar tareas
- */
-
-/**
- * @swagger
  * /v1/tarea:
  *   post:
  *     summary: Crea una nueva tarea
  *     description: Crea una nueva tarea en la base de datos. Se requiere autenticación.
  *     tags: [Tarea]
  *     security:
- *       - bearerAuth: []
+ *       - bearerAuth: []  # Aplica la seguridad solo a esta operación
  *     requestBody:
  *       required: true
  *       content:
@@ -53,7 +46,7 @@ tareaRouter.post("/tarea", authenticateJWT, crearTarea);
  *     description: Devuelve la lista de tareas del usuario autenticado.
  *     tags: [Tarea]
  *     security:
- *       - bearerAuth: []
+ *       - bearerAuth: []  # Aplica la seguridad solo a esta operación
  *     responses:
  *       200:
  *         description: Lista de tareas obtenida exitosamente
@@ -72,7 +65,7 @@ tareaRouter.get("/tarea", authenticateJWT, obtenerTareas);
  *     description: Modifica los datos de una tarea existente. Se requiere autenticación.
  *     tags: [Tarea]
  *     security:
- *       - bearerAuth: []
+ *       - bearerAuth: []  # Aplica la seguridad solo a esta operación
  *     parameters:
  *       - in: path
  *         name: id
@@ -119,7 +112,7 @@ tareaRouter.put("/tarea/:id", authenticateJWT, actualizarTarea);
  *     description: Borra una tarea específica de la base de datos. Se requiere autenticación.
  *     tags: [Tarea]
  *     security:
- *       - bearerAuth: []
+ *       - bearerAuth: []  # Aplica la seguridad solo a esta operación
  *     parameters:
  *       - in: path
  *         name: id
@@ -141,5 +134,6 @@ tareaRouter.put("/tarea/:id", authenticateJWT, actualizarTarea);
  *         description: Error del servidor
  */
 tareaRouter.delete("/tarea/:id", authenticateJWT, eliminarTarea);
+
 
 export default tareaRouter;
