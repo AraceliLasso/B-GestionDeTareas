@@ -22,7 +22,6 @@ export const checkUsuarioCreds = async (nombreDeUsuario: string, password: strin
     })
     console.log(usuarioCredEncontradas);
 
-    //revisamos si encontramos algo
     if (usuarioCredEncontradas) {
         if (usuarioCredEncontradas.password === password) return {
             login: true,

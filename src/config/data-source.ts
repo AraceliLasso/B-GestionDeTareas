@@ -15,7 +15,7 @@ export const AppDataSource = new DataSource({
     //sin dropSchema, se guardan las solicitudes http sin importar si 
     //cierro y abro el servidor
     // dropSchema: true,
-    synchronize: false, // No sincronizar automáticamente, solo cuando se ejecuten las migraciones
+    synchronize: true, // No sincronizar automáticamente, solo cuando se ejecuten las migraciones
     logging: true,
     entities: [UsuarioEntity, CredencialEntity, TareaEntity],
     migrations: [], // Aquí dejamos el arreglo vacío, ya que no lo configuramos directamente
