@@ -15,10 +15,11 @@ export const AppDataSource = new DataSource({
     //sin dropSchema, se guardan las solicitudes http sin importar si 
     //cierro y abro el servidor
     // dropSchema: true,
-    synchronize: true,
+    synchronize: false,
     logging: true,
     entities: [UsuarioEntity, CredencialEntity, TareaEntity],
     // synchronize: false,
-    // migrations: ["src/migration/**/*.ts"], // Ruta donde estarán las migraciones
+    migrations: [ "src/migration/**/*.ts"],
+    
 
 })

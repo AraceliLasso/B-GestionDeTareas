@@ -33,36 +33,41 @@ export const UsuarioModelo = AppDataSource.getRepository(UsuarioEntity);
 // }
 
 export const crearUsuarioService = async (usuarioData: UsuarioDto): Promise<UsuarioRespuestaDto> => {
-    // Verificar que las contraseñas coincidan
-    if (usuarioData.password !== usuarioData.confirmPassword) {
-        throw new Error("Las contraseñas no coinciden");
+    try {
+        // Validar si las contraseñas coinciden
+        if (usuarioData.password !== usuarioData.confirmPassword) {
+            throw new Error("Las contraseñas no coinciden");
+        }
+
+        // Verificar si el email ya está en uso
+        const usuarioExistente = await UsuarioModelo.findOne({ where: { email: usuarioData.email } });
+        if (usuarioExistente) {
+            throw new Error("El email ya está registrado");
+        }
+
+        // Crear las credenciales
+        const nuevoUsuarioCredId: CredencialEntity = await crearUsuarioCredenciales(usuarioData.apellido, usuarioData.password);
+
+        // Crear el usuario y asociar las credenciales al usuario
+        const nuevoUsuario: UsuarioEntity = UsuarioModelo.create({
+            ...usuarioData,
+            credenciales: nuevoUsuarioCredId, // Asignamos el objeto completo de CredencialEntity
+        });
+
+        // Guardar el usuario y las credenciales
+        await UsuarioModelo.save(nuevoUsuario);
+        await CredentialModel.save(nuevoUsuarioCredId);
+
+        // Devolver la respuesta con la estructura esperada
+        return {
+            id: nuevoUsuario.id,
+            nombre: nuevoUsuario.nombre,
+            apellido: nuevoUsuario.apellido,
+            email: nuevoUsuario.email,
+            credencialesId: nuevoUsuarioCredId.id, // El id de las credenciales también lo incluimos
+        };
+    } catch (error) {
+        throw new Error(error.message || "Error al crear el usuario");
     }
-
-    // Crear las credenciales del usuario
-    const nuevoUsuarioCredId: CredencialEntity = await crearUsuarioCredenciales(usuarioData.apellido, usuarioData.password);
-
-    // Crear el nuevo usuario
-    const nuevoUsuario: UsuarioEntity = UsuarioModelo.create({
-        nombre: usuarioData.nombre,
-        email: usuarioData.email,
-        // Aquí asignamos la entidad completa de credenciales
-        credenciales: nuevoUsuarioCredId,
-    });
-
-    // Relacionar el usuario con sus credenciales
-    nuevoUsuarioCredId.usuario = nuevoUsuario;
-
-    // Guardar usuario y credenciales
-    await UsuarioModelo.save(nuevoUsuario);
-    await CredentialModel.save(nuevoUsuarioCredId);
-
-    // Devolver el DTO de respuesta
-    return {
-        id: nuevoUsuario.id,
-        nombre: nuevoUsuario.nombre,
-        apellido:nuevoUsuario.apellido,
-        email: nuevoUsuario.email,
-        credencialesId: nuevoUsuarioCredId.id,  // Aquí retornamos solo el id si es necesario
-    };
-}
+};
 
