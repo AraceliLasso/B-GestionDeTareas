@@ -5,17 +5,17 @@ import { crearUsuarioService } from "../services/usuarioService";
 
 // Usuarios
 // Endpoint para registrar un usuario: Debe permitir crear un usuario con nombre, correo electrónico y contraseña.
-export const registrarUsuario = async (req: Request, res: Response) => {
-    const { name, email } = req.body;
-    if (!name || !email ) {
-        return res.status(400).send("Missing required fields")
+export const registrarUsuario = async (req: Request, res: Response): Promise<Response> => {
+    const { name, email, apellido, password } = req.body;
+    if (!name || !email || !apellido || !password) {
+        return res.status(400).send("Faltan campos requeridos")
     }
     try {
-        const newUser: UsuarioRespuestaDto = await crearUsuarioService(req.body)
-        return res.status(201).send(newUser);
+        const nuevoUsuario: UsuarioRespuestaDto = await crearUsuarioService(req.body);
+        return res.status(201).send(nuevoUsuario);
     } catch (error) {
-        console.error("Error creating user:", error);
-        res.status(500).send("Internal Server Error");
+        console.error("Error al crear el usuario", error);
+        res.status(500).send("Error interno del servidor");
     }
 }
 

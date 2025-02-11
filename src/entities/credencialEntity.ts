@@ -1,9 +1,17 @@
-import { Entity} from "typeorm"
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn} from "typeorm"
+import { UsuarioEntity } from "./usuarioEntity";
 
 
 
 
 @Entity({name:"credencial"})
 export class CredencialEntity {
-   
+    @PrimaryGeneratedColumn()
+    id: number
+    @Column({length: 50})
+    username: string
+    @Column()
+    password: string
+    @OneToOne(() => UsuarioEntity, usuario => usuario.credenciales)
+    usuario: UsuarioEntity;
 }

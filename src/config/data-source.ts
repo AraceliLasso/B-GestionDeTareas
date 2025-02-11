@@ -1,6 +1,8 @@
 import { DataSource } from "typeorm";
 import { DB_HOST, DB_PORT, DB_USERNAME, DB_NAME, DB_PASSWORD } from "./envs";
 import { UsuarioEntity } from "../entities/usuarioEntity";
+import { CredencialEntity } from "../entities/credencialEntity";
+import { TareaEntity } from "../entities/tareaEntity";
 
 
 export const AppDataSource = new DataSource({
@@ -14,8 +16,9 @@ export const AppDataSource = new DataSource({
     //cierro y abro el servidor
     // dropSchema: true,
     synchronize: true,
-    logging: ['error'],
-    entities: [UsuarioEntity],
-    subscribers: [],
-    migrations: [],
+    logging: true,
+    entities: [UsuarioEntity, CredencialEntity, TareaEntity],
+    // synchronize: false,
+    // migrations: ["src/migration/**/*.ts"], // Ruta donde estarán las migraciones
+
 })

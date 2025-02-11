@@ -19,8 +19,8 @@ export class UsuarioEntity {
     @OneToMany(() => TareaEntity, (tarea) => tarea.usuario)
     tareas: TareaEntity[];
 
-    @OneToOne(() => CredencialEntity, (cred) => cred.usuario)
-    @JoinColumn()
-    credencialesId: CredencialEntity;
+    @OneToOne(() => CredencialEntity, credencial => credencial.usuario)
+    @JoinColumn() // Esto indica que 'credencialesId' es la clave foránea en la tabla Usuario
+    credenciales: CredencialEntity;
 
 }

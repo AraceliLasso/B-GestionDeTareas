@@ -5,7 +5,7 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,  // Debe estar habilitado para usar decoradores
     "emitDecoratorMetadata": true,   // Necesario para la metadata de los decoradores de TypeORM
-    "strict": true,
+    "strict": false,
     "outDir": "./dist",
     "rootDir": "./src"
   },

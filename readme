@@ -36,3 +36,14 @@ Entrega
 Sube el código a un repositorio en GitHub.
 Incluye un archivo README.md con instrucciones para ejecutar la API.
 Si usaste Postman, agrega una colección con los endpoints.
+
+COMANDOS:
+comando de migracion: npm run typeorm migration:run
+
+Librerias/frameworks/etc
+typescript
+express
+cors
+bcrypt
+
+
