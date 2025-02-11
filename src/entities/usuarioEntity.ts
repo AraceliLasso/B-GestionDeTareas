@@ -14,6 +14,9 @@ export class UsuarioEntity {
     nombre: string
 
     @Column({ length: 100 })
+    apellido: string;
+
+    @Column({ length: 100 })
     email: string
 
     @OneToMany(() => TareaEntity, (tarea) => tarea.usuario)

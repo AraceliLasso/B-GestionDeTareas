@@ -9,9 +9,10 @@
 
 export interface UserAuthResponseDto {
     login: boolean;
-    user: {
+    usuario: {
         id: number;
         nombre: string;
+        apellido:string,
         email: string;
     };
     token?: string;
@@ -20,6 +21,7 @@ export interface UserAuthResponseDto {
 export interface UsuarioRespuestaDto {
     id:number,
     nombre: string,
+    apellido:string,
     email: string,
     credencialesId:number;
 }
@@ -28,6 +30,6 @@ interface UsuarioDto {
     email: string;
     apellido: string;
     password: string;
-    confirmPassword: string; // Confirmación de la contraseña
+    confirmPassword: string;
 }
 export default UsuarioDto;

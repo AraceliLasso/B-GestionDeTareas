@@ -10,7 +10,8 @@ const server =express();
 server.use(express.json());
 server.use(cors());
 //routes
-server.use(usuarioRouter);
+server.use("/api", usuarioRouter);
+
 
 
 export default server;
