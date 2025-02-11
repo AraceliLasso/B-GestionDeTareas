@@ -54,6 +54,8 @@ export const crearUsuarioService = async (usuarioData: UsuarioDto): Promise<Usua
 
 export const signIn = async (signInUsuario: SignInAuthDto) => {
     const usuario = await findByEmail(signInUsuario.email);
+    console.log("Usuario encontrado:", usuario);
+
     if (!usuario) {
         throw new Error("Usuario no encontrado");
     }
@@ -67,5 +69,8 @@ export const signIn = async (signInUsuario: SignInAuthDto) => {
 }
 
 export const findByEmail = (email: string) => {
-    return UsuarioModelo.findOne({ where: { email: email } });
-}
+    return UsuarioModelo.findOne({
+        where: { email },
+        relations: ['credenciales']  // Asegúrate de incluir la relación 'credenciales' para obtener los datos de la contraseña
+    });
+};

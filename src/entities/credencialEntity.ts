@@ -12,6 +12,6 @@ export class CredencialEntity {
     nombreDeUsuario: string
     @Column()
     password: string
-    @OneToOne(() => UsuarioEntity, usuario => usuario.credenciales)
+    @OneToOne(() => UsuarioEntity)
     usuario: UsuarioEntity;
 }
