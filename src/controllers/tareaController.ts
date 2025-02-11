@@ -30,14 +30,18 @@ export const crearTarea = async (req: Request, res: Response) => {
 // Endpoint para actualizar una tarea existente (permitiendo modificar título, descripción y marcarla como completada).
 export const actualizarTarea = async (req: Request, res: Response) => {
     try {
-        const { id } = req.params; // `id` es un string aquí
+        const { id } = req.params;
+        console.log("ID recibido:", id);
+
         const { titulo, descripcion, estaCompletada } = req.body;
+        console.log("Cuerpo de la solicitud:", { titulo, descripcion, estaCompletada });
 
-        // Convertir `id` a número antes de pasarlo al servicio
         const tareaActualizada = await tareaService.actualizarTarea(Number(id), titulo, descripcion, estaCompletada);
+        console.log("Tarea actualizada:", tareaActualizada);
 
-        res.json(tareaActualizada); // Aquí también se envía la respuesta
+        res.json(tareaActualizada);
     } catch (error) {
+        console.error("Error al actualizar la tarea:", error); 
         res.status(500).json({ message: error.message });
     }
 };
@@ -46,9 +50,10 @@ export const actualizarTarea = async (req: Request, res: Response) => {
 export const eliminarTarea = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
-
+        console.log("ID recibido en la solicitud:", id);
+        
         await tareaService.eliminarTarea(Number(id));
-        res.status(204).send(); // No content, la tarea se eliminó correctamente
+        res.status(204).send();
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
