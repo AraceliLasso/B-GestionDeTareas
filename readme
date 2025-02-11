@@ -39,9 +39,14 @@ Si usaste Postman, agrega una colección con los endpoints.
 
 COMANDOS:
 comando de migracion: npm run typeorm migration:run
+
 levantar terminal:npx ts-node src/index.ts
+
 levantar terminal: npm run start
+
 url de documentacion: http://localhost:3000/api-docs
+
+
 Librerias/frameworks/etc
 typescript
 express
