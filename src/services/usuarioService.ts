@@ -2,7 +2,7 @@ import { AppDataSource } from "../config/data-source";
 import UsuarioDto, { UsuarioAuthRespuestaDto, UsuarioRespuestaDto } from "../dtos/usuarioDto";
 import { CredencialEntity } from "../entities/credencialEntity";
 import { UsuarioEntity } from "../entities/usuarioEntity";
-import { checkUsuarioCreds, crearUsuarioCredenciales, CredentialModel } from "./credencialesService";
+import { checkUsuarioCreds, crearUsuarioCredenciales, CredencialModelo } from "./credencialesService";
 import * as jwt from 'jsonwebtoken';
 
 
@@ -56,7 +56,7 @@ export const crearUsuarioService = async (usuarioData: UsuarioDto): Promise<Usua
 
         // Guardar el usuario y las credenciales
         await UsuarioModelo.save(nuevoUsuario);
-        await CredentialModel.save(nuevoUsuarioCredId);
+        await CredencialModelo.save(nuevoUsuarioCredId);
 
         // Devolver la respuesta con la estructura esperada
         return {
