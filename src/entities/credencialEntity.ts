@@ -8,8 +8,6 @@ import { UsuarioEntity } from "./usuarioEntity";
 export class CredencialEntity {
     @PrimaryGeneratedColumn()
     id: number
-    @Column({length: 50})
-    username: string
     @Column()
     password: string
     @OneToOne(() => UsuarioEntity, usuario => usuario.credenciales)
