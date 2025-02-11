@@ -46,7 +46,7 @@ export const crearUsuarioService = async (usuarioData: UsuarioDto): Promise<Usua
         }
 
         // Crear las credenciales
-        const nuevoUsuarioCredId: CredencialEntity = await crearUsuarioCredenciales(usuarioData.apellido, usuarioData.password);
+        const nuevoUsuarioCredId: CredencialEntity = await crearUsuarioCredenciales(usuarioData.nombreDeUsuario, usuarioData.password);
 
         // Crear el usuario y asociar las credenciales al usuario
         const nuevoUsuario: UsuarioEntity = UsuarioModelo.create({

@@ -21,6 +21,7 @@ interface UsuarioDto {
     nombre: string;
     email: string;
     apellido: string;
+    nombreDeUsuario:string;
     password: string;
     confirmPassword: string;
 }

@@ -6,9 +6,9 @@ import { crearUsuarioService, loginUsuarioService } from "../services/usuarioSer
 // Usuarios
 // Endpoint para registrar un usuario: Debe permitir crear un usuario con nombre, correo electrónico y contraseña.
 export const registrarUsuario = async (req: Request, res: Response): Promise<void> => {
-    const { nombre, email, apellido, password, confirmPassword } = req.body;
+    const { nombre, email, apellido, nombreDeUsuario, password, confirmPassword } = req.body;
 
-    if (!nombre || !email || !apellido || !password || !confirmPassword) {
+    if (!nombre || !email || !nombreDeUsuario ||!apellido || !password || !confirmPassword) {
         res.status(400).send("Faltan campos obligatorios");
         return;
     }
