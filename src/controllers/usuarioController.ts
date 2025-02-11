@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { UsuarioAuthRespuestaDto, UsuarioRespuestaDto } from "../dtos/usuarioDto";
-import { crearUsuarioService, loginUsuarioService } from "../services/usuarioService";
+import { SignInAuthDto, UsuarioAuthRespuestaDto, UsuarioRespuestaDto } from "../dtos/usuarioDto";
+import { crearUsuarioService, signIn } from "../services/usuarioService";
 
 
 // Usuarios
@@ -33,19 +33,21 @@ export const registrarUsuario = async (req: Request, res: Response): Promise<voi
 //  la autenticación es exitosa.
 export const loginUsuarios = async (req: Request, res: Response): Promise<void> => {
     try {
-        const { nombreDeUsuario, password } = req.body;
-        if (!nombreDeUsuario || !password) {
-            res.status(400).send("Faltan campos obligatorios");
-            return;
-        }
-        const usuarioVerificado: UsuarioAuthRespuestaDto | null = await loginUsuarioService(nombreDeUsuario, password);
-        if (usuarioVerificado) {
-            res.status(400).send(usuarioVerificado);
-            return;
-        } res.status(400).send("Login falló");
+      // Desestructuramos el cuerpo de la solicitud (que se espera que sea un objeto conforme a SignInAuthDto)
+      const { email, password }: { email: string, password: string } = req.body;
+      
+      if (!email || !password) {
+        res.status(400).send("Email y password son requeridos.");
         return;
+      }
+  
+      // Llamamos al servicio de inicio de sesión
+      const result = await signIn({ email, password });
+  
+      // Si todo va bien, devolvemos el token
+      res.json(result);  // Aquí ya no es necesario un return
     } catch (error) {
-        console.error("Error creando usuario: ", error);
-        res.status(500).send("Error interno de server")
+      // En caso de error, respondemos con el error
+      res.status(400).json({ message: error.message });
     }
-}
+  };

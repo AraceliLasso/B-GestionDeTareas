@@ -1,3 +1,4 @@
+import { IsEmail, IsNotEmpty, IsString } from "class-validator";
 
 export interface  UsuarioAuthRespuestaDto{
     login: boolean;
@@ -17,6 +18,20 @@ export interface UsuarioRespuestaDto {
     email: string,
     credencialesId:number;
 }
+
+export class SignInAuthDto{
+    @IsEmail()
+    @IsNotEmpty()
+    email:string;
+
+    @IsNotEmpty()
+    password:string;
+
+    constructor(partial:Partial<SignInAuthDto>){
+        Object.assign(this, partial);
+    }
+}
+
 interface UsuarioDto {
     nombre: string;
     email: string;
