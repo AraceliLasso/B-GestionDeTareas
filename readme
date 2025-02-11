@@ -46,6 +46,14 @@ levantar terminal: npm run start
 
 url de documentacion: http://localhost:3000/api-docs
 
+env.example:
+PORT = 3010
+DB_HOST=localhost
+DB_PORT=4575
+DB_USERNAME=myUsername
+DB_PASSWORD=contrl123
+DB_NAME= prueba_tecnica
+JWT_SECRET=my_secret
 
 Librerias/frameworks/etc
 typescript
