@@ -4,7 +4,7 @@ import { crearTarea, obtenerTareas } from "../controllers/tareaController"; // I
 
 const tareaRouter = Router();
 
-tareaRouter.post("/tareas", authenticateJWT, crearTarea); 
-tareaRouter.get("/tareas", authenticateJWT, obtenerTareas);
+tareaRouter.post("/tarea", authenticateJWT, crearTarea); 
+tareaRouter.get("/tarea", authenticateJWT, obtenerTareas);
 
 export default tareaRouter;
