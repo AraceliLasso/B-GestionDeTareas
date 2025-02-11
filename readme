@@ -1,50 +1,36 @@
-
-Objetivo de la prueba
-El objetivo es crear una API RESTful sencilla para gestionar un sistema de tareas. Con esta prueba queremos evaluar tu capacidad para:
-
-Diseñar y desarrollar una API funcional.
-Implementar autenticación (opcional, pero suma puntos).
-Aplicar buenas prácticas en código.
-Documentar correctamente la API.
-Requisitos Técnicos
-Lenguaje: Usar Node.js con Express
-Base de datos: PostgreSQL.
-Autenticación: Implementar autenticación con JWT (opcional, pero suma puntos).
-Documentación: Usa Swagger para documentar la API.
-Código limpio: Estructura modular y buenas prácticas.
-
-Endpoints Requeridos
-Usuarios
-Endpoint para registrar un usuario: Debe permitir crear un usuario con nombre, correo electrónico y contraseña.
-Endpoint para iniciar sesión: Debe recibir las credenciales del usuario y devolver un token JWT si la autenticación es exitosa.
-Tareas
-Endpoint para obtener todas las tareas del usuario autenticado.
-Endpoint para crear una nueva tarea con un título y una descripción.
-Endpoint para actualizar una tarea existente (permitiendo modificar título, descripción y marcarla como completada).
-Endpoint para eliminar una tarea.
-Ejemplo de Flujo de Uso
-Un usuario se registra en la API.
-Inicia sesión con su correo y contraseña, obteniendo un token JWT.
-Con el token, puede crear, listar, actualizar y eliminar sus tareas.
-Todas las rutas de tareas deben estar protegidas con autenticación.
-Criterios de Evaluación
-La API debe cumplir con los requerimientos funcionales.
-El código debe estar estructurado y seguir buenas prácticas.
-Se valorará la implementación de seguridad con JWT.
-La API debe estar correctamente documentada con Swagger o Postman.
-Entrega
-Sube el código a un repositorio en GitHub.
-Incluye un archivo README.md con instrucciones para ejecutar la API.
-Si usaste Postman, agrega una colección con los endpoints.
-
 COMANDOS:
 comando de migracion: npm run typeorm migration:run
 
 levantar terminal:npx ts-node src/index.ts
 
-levantar terminal: npm run start
-
 url de documentacion: http://localhost:3000/api-docs
+
+Son visibles en Swagger registro y login
+
+get=> Heather Authorization:Bearer Token
+URL ejemplo:http://localhost:3000/api/v1/tarea
+No lleva Body
+Body ejemplo: {
+  "titulo": "Mi tarea11",
+  "descripcion": "Descripción de la tarea11"
+}
+
+post=>Heather Authorization:Bearer Token
+URL ejemplo:http://localhost:3000/api/v1/tarea
+
+put=>Heather Authorization:Bearer Token
+URL ejemplo:http://localhost:3000/api/v1/tarea/7
+Body ejemplo:{
+  "titulo": "Nueva Tarea4",
+  "descripcion": "Descripción de la tarea actualizada4",
+  "estaCompletada": true
+}
+
+delete=>Heather Authorization:Bearer Token
+URL ejemplo:http://localhost:3000/api/v1/tarea/7
+No lleva Body
+
+
 
 env.example:
 PORT = 3010
@@ -55,10 +41,6 @@ DB_PASSWORD=contrl123
 DB_NAME= prueba_tecnica
 JWT_SECRET=my_secret
 
-Librerias/frameworks/etc
-typescript
-express
-cors
-bcrypt
+
 
 
