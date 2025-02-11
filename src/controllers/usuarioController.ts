@@ -8,13 +8,11 @@ import { crearUsuarioService } from "../services/usuarioService";
 export const registrarUsuario = async (req: Request, res: Response): Promise<void> => {
     const { nombre, email, apellido, password, confirmPassword } = req.body;
 
-    // Validar que no falten campos obligatorios
     if (!nombre || !email || !apellido || !password || !confirmPassword) {
         res.status(400).send("Faltan campos obligatorios");
         return;
     }
 
-    // Verificar que las contraseñas coincidan
     if (password !== confirmPassword) {
         res.status(400).send("Las contraseñas no coinciden");
         return;

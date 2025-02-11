@@ -71,3 +71,10 @@ export const crearUsuarioService = async (usuarioData: UsuarioDto): Promise<Usua
     }
 };
 
+export const loginUsersService = async (username: string, password: string):Promise<UserAuthResponseDto | null>=>{
+    //validar las credenciales
+    //encontrar al user
+    //empaquetar la respuesta
+    return await checkUserCredentials(username, password);
+
+}

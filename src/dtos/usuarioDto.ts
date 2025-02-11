@@ -1,13 +1,5 @@
-// export interface UserAuthResponseDto{
-//     login: boolean;
-//     user:{
-//         id:number;
-//         nombre:string;
-//         email:string;
-//     }
-// }
 
-export interface UserAuthResponseDto {
+export interface  UsuarioAuthRespuestaDto{
     login: boolean;
     usuario: {
         id: number;

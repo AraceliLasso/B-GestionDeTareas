@@ -1,4 +1,5 @@
 import { AppDataSource } from "../config/data-source";
+import { UsuarioAuthRespuestaDto } from "../dtos/usuarioDto";
 import { CredencialEntity } from "../entities/credencialEntity";
 import bcrypt from 'bcrypt';
 
@@ -12,3 +13,28 @@ export const crearUsuarioCredenciales = async (apellido: string, password: strin
     await CredentialModel.save(credenciales);
     return credenciales;
 };
+
+
+export const checkUserCredentials = async (apellido: string, password: string): Promise<UsuarioAuthRespuestaDto | null> => {
+    const usuarioCredEncontradas: CredencialEntity | null = await CredentialModel.findOne({
+        where: { apellido },
+        relations: { usuario: true }
+    })
+    console.log(usuarioCredEncontradas);
+
+    //revisamos si encontramos algo
+    if (usuarioCredEncontradas) {
+        if (usuarioCredEncontradas.password === password) return {
+            login: true,
+            usuario: {
+                id: usuarioCredEncontradas.usuario.id,
+                nombre: usuarioCredEncontradas.usuario.nombre,
+                apellido: usuarioCredEncontradas.usuario.apellido,
+                email: usuarioCredEncontradas.usuario.email,
+               
+            }
+        }
+    }
+
+    return null;
+}
