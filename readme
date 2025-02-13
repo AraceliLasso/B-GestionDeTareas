@@ -3,7 +3,7 @@
 comando de migracion: npm run typeorm migration:run
 
 levantar terminal en producción: npm run start
-levantar terminal en desarrollo:npx ts-node src/index.ts
+levantar terminal en desarrollo:npm run dev
 
 *DOCUMENTACIÓN*
 URL de documentacion tras levantar proyecto(Son visibles en Swagger registro y login): http://localhost:3000/api-docs
