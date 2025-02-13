@@ -1,8 +1,9 @@
 import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 import { Application } from "express";
+import path from "path";
 
-// Configuración de Swagger
+
 const options = {
   swaggerDefinition: {
     openapi: "3.0.0",
@@ -13,7 +14,7 @@ const options = {
     },
     servers: [
       {
-        url: "http://localhost:3000/api/v1", // Asegúrate de que el puerto y la URL sean correctos
+        url: "http://localhost:3000/api/v1",
       },
     ],
     components: {
@@ -21,12 +22,12 @@ const options = {
         bearerAuth: {
           type: "http",
           scheme: "bearer",
-          bearerFormat: "JWT", // Esto es solo para documentación, pero indica que estamos usando JWT
+          bearerFormat: "JWT",
         },
       },
     },
   },
-  apis: ["./src/routes/**/*.ts"], // Aquí se encuentran las rutas que Swagger escaneará para documentar
+  apis: [path.join(__dirname, "./routes/**/*.ts")],
 };
 
 const specs = swaggerJsdoc(options);
