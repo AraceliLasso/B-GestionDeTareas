@@ -1,12 +1,15 @@
-COMANDOS:
+*COMANDOS*
+
 comando de migracion: npm run typeorm migration:run
 
 levantar terminal:npx ts-node src/index.ts
 
-url de documentacion: http://localhost:3000/api-docs
+*DOCUMENTACIÓN*
+URL de documentacion tras levantar proyecto(Son visibles en Swagger registro y login): http://localhost:3000/api-docs
+URL de documentación en figma: https://www.figma.com/design/pvpFocXepjw1tHmFZeu7RH/Untitled?node-id=0-1&t=GREaPtx0Qqrz068n-1
 
-Son visibles en Swagger registro y login
 
+*INFO del resto de rutas--TAREAS*
 get=> Heather Authorization:Bearer Token
 URL ejemplo:http://localhost:3000/api/v1/tarea
 No lleva Body
@@ -17,6 +20,11 @@ Body ejemplo: {
 
 post=>Heather Authorization:Bearer Token
 URL ejemplo:http://localhost:3000/api/v1/tarea
+{
+  "titulo": "Mi tarea11",
+  "descripcion": "Descripción de la tarea11"
+}
+
 
 put=>Heather Authorization:Bearer Token
 URL ejemplo:http://localhost:3000/api/v1/tarea/7
@@ -32,7 +40,7 @@ No lleva Body
 
 
 
-env.example:
+*env.example*
 PORT = 3010
 DB_HOST=localhost
 DB_PORT=4575
