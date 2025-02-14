@@ -3,7 +3,26 @@ import cors from "cors";
 import "reflect-metadata";
 import usuarioRouter from "./routes/usuarioRutas";
 import tareaRouter from "./routes/tareasRutas";
-import swagger from "./docs/swagger";
+const path = require("path")
+
+const swaggerUI = require("swagger-ui-express")
+const swaggerJsdoc = require("swagger-jsdoc")
+const swaggerSpec = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Gestor de tareas",
+      version: "1.0.0"
+    },
+    servers: [
+      {
+        url: "http://localhost:3000"
+      }
+    ]
+  },
+  apis: [`${path.join(__dirname, "./routes/*.ts")}`]
+}
+
 
 const server = express();
 
@@ -13,10 +32,9 @@ server.get("/", (req, res) => {
 
 server.use(express.json());
 server.use(cors());
-
 server.use("/api", usuarioRouter);
 server.use("/api/v1", tareaRouter);
+server.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerJsdoc(swaggerSpec)))
 
-swagger(server);
 
 export default server;

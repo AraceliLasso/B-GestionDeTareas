@@ -7,7 +7,7 @@ const usuarioRouter: Router = Router();
  * @swagger
  * components:
  *   schemas:
- *     UsuarioEntity:
+ *     RegistroUsuario:
  *       type: object
  *       properties:
  *         nombre:
@@ -48,9 +48,51 @@ const usuarioRouter: Router = Router();
 
 /**
  * @swagger
- * /api/usuarios/registro:
+ * /api/usuario/registro:
  *   post:
  *     summary: Crea un nuevo usuario
+ *     tags: 
+ *       - RegistroUsuario
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/RegistroUsuario'
+ *     responses:
+ *       201:
+ *         description: Nuevo usuario creado exitosamente
+ */
+
+usuarioRouter.post("/usuario/registro", registrarUsuario);
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     LoginUsuario:
+ *       type: object
+ *       properties:
+ *         email:
+ *           type: string
+ *           description: El mail del usuario
+ *         password:
+ *           type: string
+ *           format: password
+ *           description: La contraseña del usuario
+ *       required:
+ *         - email
+ *         - password
+ *       example:
+ *         email: "juanPeperez@gmail.com"
+ *         password: "12345*"
+ */
+
+/**
+ * @swagger
+ * /api/usuario/login:
+ *   post:
+ *     summary: El usuario ingresa a su cuenta
  *     tags: 
  *       - UsuarioEntity
  *     requestBody:
@@ -58,12 +100,11 @@ const usuarioRouter: Router = Router();
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/UsuarioEntity'
- *      responses:
- *      201:
- *          description: Nuevo usuario creado
+ *             $ref: '#/components/schemas/LoginUsuario'
+ *     responses:
+ *       201:
+ *         description: Login exitoso
  */
-usuarioRouter.post("/usuario/registro", registrarUsuario);
 
 usuarioRouter.post("/usuario/login", loginUsuarios);
 

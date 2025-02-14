@@ -8,7 +8,7 @@ import { validate } from "class-validator";
 export const registrarUsuario = async (req: Request, res: Response): Promise<void> => {
     const { nombre, email, apellido, nombreDeUsuario, password, confirmPassword } = req.body;
 
-    if (!nombre || !email || !nombreDeUsuario ||!apellido || !password || !confirmPassword) {
+    if (!nombre || !email || !nombreDeUsuario || !apellido || !password || !confirmPassword) {
         res.status(400).send("Faltan campos obligatorios");
         return;
     }
@@ -30,23 +30,23 @@ export const registrarUsuario = async (req: Request, res: Response): Promise<voi
 
 // Endpoint para iniciar sesión:
 export const loginUsuarios = async (req: Request, res: Response): Promise<void> => {
-  const { email, password }: { email: string, password: string } = req.body;
-  const signInDto = new SignInAuthDto({ email, password });
+    const { email, password }: { email: string, password: string } = req.body;
+    const signInDto = new SignInAuthDto({ email, password });
 
-  const errors = await validate(signInDto);
-  if (errors.length > 0) {
-      res.status(400).json({
-          message: 'Datos inválidos',
-          errors: errors
-      });
-      return; // Aquí terminamos la función sin retornar nada más
-  }
+    const errors = await validate(signInDto);
+    if (errors.length > 0) {
+        res.status(400).json({
+            message: 'Datos inválidos',
+            errors: errors
+        });
+        return;
+    }
 
-  // Continuar con la autenticación si no hay errores
-  try {
-      const result = await signIn({ email, password });
-      res.json(result); // Respuesta sin retornar nada
-  } catch (error) {
-      res.status(400).json({ message: error.message });
-  }
+
+    try {
+        const result = await signIn({ email, password });
+        res.json(result);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
 };

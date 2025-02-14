@@ -11,14 +11,14 @@ export const authenticateJWT = (req: Request, res: Response, next: NextFunction)
     return;
   }
 
-  console.log("Secreto JWT:", process.env.JWT_SECRET); // Verificar si la clave secreta está cargada correctamente
+  console.log("Secreto JWT:", process.env.JWT_SECRET);
 
   try {
     const decoded = authService.verifyToken(token);
     req.user = decoded;
-    next(); // Pasar el control al siguiente middleware/controlador
+    next();
   } catch (error) {
-    console.log("Error al verificar el token:", error); // Depurar el error de verificación
+    console.log("Error al verificar el token:", error);
     res.status(401).json({ message: "Token no válido." });
     return;
   }
