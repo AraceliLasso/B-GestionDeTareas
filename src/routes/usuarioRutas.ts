@@ -52,7 +52,7 @@ const usuarioRouter: Router = Router();
  *   post:
  *     summary: Crea un nuevo usuario
  *     tags: 
- *       - RegistroUsuario
+ *       - Usuario
  *     requestBody:
  *       required: true
  *       content:
@@ -94,7 +94,7 @@ usuarioRouter.post("/usuario/registro", registrarUsuario);
  *   post:
  *     summary: El usuario ingresa a su cuenta
  *     tags: 
- *       - UsuarioEntity
+ *       - Usuario
  *     requestBody:
  *       required: true
  *       content:
