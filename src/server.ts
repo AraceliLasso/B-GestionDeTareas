@@ -35,7 +35,7 @@ const swaggerSpec = {
       },
     ],
   },
-  apis: [`${path.join(__dirname, "./routes/*.ts")}`],
+  apis: [`${path.join(__dirname, "./routes/*.ts")}`, "./dist/routes/*.js"]
 };
 
 const server = express();
