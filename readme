@@ -1,47 +1,15 @@
-*COMANDOS*
+_COMANDOS_
 
 comando de migracion: npm run typeorm migration:run
 
 levantar terminal en producción: npm run start
 levantar terminal en desarrollo:npm run dev
 
-*DOCUMENTACIÓN*
-URL de documentacion tras levantar proyecto(Son visibles en Swagger registro y login): http://localhost:3000/api-docs
+_DOCUMENTACIÓN COMPLETA_
+URL de documentacion tras levantar proyecto: http://localhost:3000/api-docs
 URL de documentación en figma: https://www.figma.com/design/pvpFocXepjw1tHmFZeu7RH/Untitled?node-id=0-1&t=GREaPtx0Qqrz068n-1
 
-
-*INFO del resto de rutas--TAREAS*
-get=> Heather Authorization:Bearer Token
-URL ejemplo:http://localhost:3000/api/v1/tarea
-No lleva Body
-Body ejemplo: {
-  "titulo": "Mi tarea11",
-  "descripcion": "Descripción de la tarea11"
-}
-
-post=>Heather Authorization:Bearer Token
-URL ejemplo:http://localhost:3000/api/v1/tarea
-{
-  "titulo": "Mi tarea11",
-  "descripcion": "Descripción de la tarea11"
-}
-
-
-put=>Heather Authorization:Bearer Token
-URL ejemplo:http://localhost:3000/api/v1/tarea/7
-Body ejemplo:{
-  "titulo": "Nueva Tarea4",
-  "descripcion": "Descripción de la tarea actualizada4",
-  "estaCompletada": true
-}
-
-delete=>Heather Authorization:Bearer Token
-URL ejemplo:http://localhost:3000/api/v1/tarea/7
-No lleva Body
-
-
-
-*env.example*
+_env.example_
 PORT = 3010
 DB_HOST=localhost
 DB_PORT=4575
@@ -49,7 +17,3 @@ DB_USERNAME=myUsername
 DB_PASSWORD=contrl123
 DB_NAME= prueba_tecnica
 JWT_SECRET=my_secret
-
-
-
-
