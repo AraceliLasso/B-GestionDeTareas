@@ -6,7 +6,8 @@ levantar terminal en producción: npm run start
 levantar terminal en desarrollo:npm run dev
 
 _DOCUMENTACIÓN COMPLETA_
-URL de documentacion tras levantar proyecto: http://localhost:3000/api-docs
+URL de documentación Swagger deployada= https://b-gestiondetareas.onrender.com/api-docs/
+URL de documentación Swagger local=http://localhost:3000/api-docs/
 URL de documentación en figma: https://www.figma.com/design/pvpFocXepjw1tHmFZeu7RH/Untitled?node-id=0-1&t=GREaPtx0Qqrz068n-1
 
 _env.example_
