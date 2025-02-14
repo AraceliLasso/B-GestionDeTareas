@@ -32,11 +32,13 @@ const tareaRouter = Router();
 
 /**
  * @swagger
- * /api/tarea:
+ * /api/v1/tarea:
  *   post:
  *     summary: El usuario crea una tarea
  *     tags: 
  *       - Tarea
+ *     security:
+ *       - BearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -51,11 +53,13 @@ tareaRouter.post("/tarea", authenticateJWT, crearTarea);
 
 /**
  * @swagger
- * /api/tareas:
+ * /api/v1/tareas:
  *   get:
  *     summary: Traer todas las tareas del usuario
  *     tags: 
  *       - Tarea
+ *     security:
+ *       - BearerAuth: []
  *     responses:
  *       200:
  *         description: Tareas traidas exitosamente
@@ -70,10 +74,12 @@ tareaRouter.get("/tareas", authenticateJWT, obtenerTareas);
 
 /**
  * @swagger
- * /api/tarea/{id}:
+ * /api/v1/tarea/{id}:
  *   put:
  *     summary: El usuario actualiza una tarea
- *     tags: 
+ *     tags:
+  *     security:
+ *       - BearerAuth: []
  *       - Tarea
  *     parameters:
  *       - in: path
@@ -102,10 +108,12 @@ tareaRouter.put("/tarea/:id", authenticateJWT, actualizarTarea);
 
 /**
  * @swagger
- * /api/tarea/{id}:
+ * /api/v1/tarea/{id}:
  *   delete:
  *     summary: Elimina una tarea por ID (requiere autenticación)
- *     tags: 
+ *     tags:
+  *     security:
+ *       - BearerAuth: []
  *       - Tarea
  *     parameters:
  *       - in: path

@@ -7,22 +7,36 @@ const path = require("path")
 
 const swaggerUI = require("swagger-ui-express")
 const swaggerJsdoc = require("swagger-jsdoc")
+
 const swaggerSpec = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "Gestor de tareas",
-      version: "1.0.0"
+      title: "Gestor de Tareas",
+      version: "1.0.0",
     },
     servers: [
       {
-        url: "http://localhost:3000"
-      }
-    ]
+        url: "http://localhost:3000",
+      },
+    ],
+    components: {
+      securitySchemes: {
+        BearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      },
+    },
+    security: [
+      {
+        BearerAuth: [],
+      },
+    ],
   },
-  apis: [`${path.join(__dirname, "./routes/*.ts")}`]
-}
-
+  apis: [`${path.join(__dirname, "./routes/*.ts")}`],
+};
 
 const server = express();
 
@@ -35,6 +49,7 @@ server.use(cors());
 server.use("/api", usuarioRouter);
 server.use("/api/v1", tareaRouter);
 server.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerJsdoc(swaggerSpec)))
+
 
 
 export default server;
