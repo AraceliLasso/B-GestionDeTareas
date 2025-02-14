@@ -41,17 +41,37 @@ export const actualizarTarea = async (req: Request, res: Response) => {
 
         res.json(tareaActualizada);
     } catch (error) {
-        console.error("Error al actualizar la tarea:", error); 
+        console.error("Error al actualizar la tarea:", error);
         res.status(500).json({ message: error.message });
     }
 };
+
+export const actualizarEstado = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params;
+        console.log("ID recibido:", id);
+
+        const { estaCompletada } = req.body;
+        console.log("Cuerpo de la solicitud:", { estaCompletada });
+
+        const estadoActualizado = await tareaService.actualizarEstado(Number(id), estaCompletada);
+        console.log("Estado de tarea actualizado:", estadoActualizado);
+
+        res.json(estadoActualizado);
+    } catch (error) {
+        console.error("Error al actualizar la tarea:", error);
+        res.status(500).json({ message: error.message });
+    }
+}
+
+
 
 // Endpoint para eliminar una tarea.
 export const eliminarTarea = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
         console.log("ID recibido en la solicitud:", id);
-        
+
         await tareaService.eliminarTarea(Number(id));
         res.status(204).send();
     } catch (error) {
