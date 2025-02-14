@@ -17,7 +17,7 @@ const swaggerSpec = {
     },
     servers: [
       {
-        url: "http://localhost:3000",
+        url: "https://b-gestiondetareas.onrender.com",
       },
     ],
     components: {
