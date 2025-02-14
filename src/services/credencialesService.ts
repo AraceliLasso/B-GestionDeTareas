@@ -11,7 +11,7 @@ export const crearUsuarioCredenciales = async (nombreDeUsuario: string, password
 
     credenciales.nombreDeUsuario = nombreDeUsuario;
     credenciales.password = await bcrypt.hash(password, 10)
-  
+
     await CredencialModelo.save(credenciales);
     return credenciales;
 };
@@ -28,7 +28,7 @@ export const checkUsuarioCreds = async (nombreDeUsuario: string, password: strin
     if (usuarioCredEncontradas) {
         // Comparamos la contraseña con bcrypt para verificarla
         const passwordMatch = await bcrypt.compare(password, usuarioCredEncontradas.password);
-        
+
         if (passwordMatch) {
             // Si la contraseña coincide, retornamos los datos del usuario
             return {

@@ -4,9 +4,9 @@
   "description": "Objetivo de la prueba\r El objetivo es crear una API RESTful sencilla para gestionar un sistema de tareas. Con esta prueba queremos evaluar tu capacidad para:",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node src/index.ts",
+    "dev": "nodemon --exec ts-node src/index.ts",
     "build": "tsc",
-    "start": "nodemon dist/index.js"
+    "start": "node dist/index.js"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +19,7 @@
     "@types/jsonwebtoken": "^9.0.8",
     "@types/node": "^22.13.1",
     "nodemon": "^3.1.9",
+    "prettier": "^3.5.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
   },
