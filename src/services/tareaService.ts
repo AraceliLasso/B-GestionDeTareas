@@ -27,20 +27,28 @@ export class TareaService {
   }
 
   async actualizarTarea(id: number, titulo?: string, descripcion?: string, estaCompletada?: boolean) {
-    const tarea = await this.tareaRepository.findOne({ where: { id } });  // Aquí usamos el id como number
+    const tarea = await this.tareaRepository.findOne({ where: { id } });
     if (!tarea) {
       throw new Error("Tarea no encontrada");
     }
-  
+
     tarea.titulo = titulo || tarea.titulo;
     tarea.descripcion = descripcion || tarea.descripcion;
     tarea.estaCompletada = estaCompletada ?? tarea.estaCompletada;
-  
+
     return this.tareaRepository.save(tarea);
   }
-  
-  
 
+
+  async actualizarEstado(id: number, estaCompletada: boolean) {
+    const tarea = await this.tareaRepository.findOne({ where: { id } });
+    if (!tarea) {
+      throw new Error("Tarea no encontrada");
+    }
+    tarea.estaCompletada = estaCompletada ?? tarea.estaCompletada;
+
+    return this.tareaRepository.save(tarea);
+  }
 
   async eliminarTarea(id: number) {
     console.log("ID recibido en el servicio:", id);

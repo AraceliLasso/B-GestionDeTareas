@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { authenticateJWT } from "../middlewares/authMiddleware";
-import { actualizarTarea, crearTarea, eliminarTarea, obtenerTareas } from "../controllers/tareaController";
+import { actualizarEstado, actualizarTarea, crearTarea, eliminarTarea, obtenerTareas } from "../controllers/tareaController";
 
 const tareaRouter = Router();
 
@@ -77,8 +77,9 @@ tareaRouter.get("/tareas", authenticateJWT, obtenerTareas);
  * /api/v1/tarea/{id}:
  *   put:
  *     summary: El usuario actualiza una tarea
- *     tags:
-  *     security:
+ *     tags: 
+ *       - Tarea
+ *     security:
  *       - BearerAuth: []
  *       - Tarea
  *     parameters:
@@ -106,13 +107,65 @@ tareaRouter.get("/tareas", authenticateJWT, obtenerTareas);
  */
 tareaRouter.put("/tarea/:id", authenticateJWT, actualizarTarea);
 
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     TareaEstado:
+ *       type: object
+ *       properties:
+ *         estaCompletada:
+ *           type: boolean
+ *           description: Estado de la tarea
+ *       required:
+ *         - estaCompletada
+ *       example:
+ *         estaCompletada: false
+ */
+
+/**
+ * @swagger
+ * /api/v1/tarea/estado/{id}:
+ *   put:
+ *     summary: El usuario actualiza el estado de una tarea
+ *     tags:
+ *       - Tarea
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID de la tarea cuyo estado se va a actualizar
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/TareaEstado'
+ *     responses:
+ *       200:
+ *         description: Estado de tarea actualizado exitosamente
+ *       400:
+ *         description: Datos inválidos
+ *       401:
+ *         description: No autorizado
+ *       404:
+ *         description: Tarea no encontrada
+ */
+tareaRouter.put("/tarea/estado/:id", authenticateJWT, actualizarEstado);
+
 /**
  * @swagger
  * /api/v1/tarea/{id}:
  *   delete:
  *     summary: Elimina una tarea por ID (requiere autenticación)
- *     tags:
-  *     security:
+ *     tags: 
+ *       - Tarea
+ *     security:
  *       - BearerAuth: []
  *       - Tarea
  *     parameters:
