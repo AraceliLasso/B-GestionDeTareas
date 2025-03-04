@@ -190,3 +190,6 @@ tareaRouter.delete("/tarea/:id", authenticateJWT, eliminarTarea);
 
 
 export default tareaRouter;
+//Las tareas van a trabajar en función de un documento.
+
+//documento = array [{tarea1}, {tarea2}, {tarea3}]

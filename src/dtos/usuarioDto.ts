@@ -1,42 +1,43 @@
 import { IsEmail, IsNotEmpty, IsString } from "class-validator";
 
-export interface  UsuarioAuthRespuestaDto{
+export interface UsuarioAuthRespuestaDto {
     login: boolean;
     usuario: {
         id: number;
         nombre: string;
-        apellido:string,
+        apellido: string,
         email: string;
     };
     token?: string;
 }
 
 export interface UsuarioRespuestaDto {
-    id:number,
+    id: number,
     nombre: string,
-    apellido:string,
+    apellido: string,
     email: string,
-    credencialesId:number;
+    credencialesId: number;
 }
 
-export class SignInAuthDto{
+export class SignInAuthDto {
     @IsEmail()
     @IsNotEmpty()
-    email:string;
+    email: string;
 
     @IsNotEmpty()
-    password:string;
+    password: string;
 
-    constructor(partial:Partial<SignInAuthDto>){
+    constructor(partial: Partial<SignInAuthDto>) {
         Object.assign(this, partial);
     }
 }
 
 interface UsuarioDto {
+    //eliminar nombre y apellido del flujo
     nombre: string;
     email: string;
     apellido: string;
-    nombreDeUsuario:string;
+    nombreDeUsuario: string;
     password: string;
     confirmPassword: string;
 }

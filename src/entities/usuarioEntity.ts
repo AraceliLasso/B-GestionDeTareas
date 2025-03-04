@@ -23,5 +23,6 @@ export class UsuarioEntity {
     tareas: TareaEntity[];
     @OneToOne(() => CredencialEntity, { cascade: true })
     @JoinColumn()
-    credenciales: CredencialEntity;  
+    credenciales: CredencialEntity;
 }
+//eliminar nombre y apellido del flujo
